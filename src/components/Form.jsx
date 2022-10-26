@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 class Form extends Component {
   render() {
+    const { cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo,
+      hasTrunfo, isSaveButtonDisabled,
+      onInputChange, onSaveButtonClick } = this.props;
+
     return (
       <form>
         <label htmlFor="name-input">
@@ -11,6 +17,8 @@ class Form extends Component {
             id="name-input"
             name="name-input"
             data-testid="name-input"
+            value={ cardName }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="description-input">
@@ -19,6 +27,8 @@ class Form extends Component {
             id="description-input"
             name="description-input"
             data-testid="description-input"
+            value={ cardDescription }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="style-input">
@@ -28,6 +38,8 @@ class Form extends Component {
             id="style-input"
             name="style-input"
             data-testid="attr1-input"
+            value={ cardAttr1 }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="beauty-input">
@@ -37,6 +49,8 @@ class Form extends Component {
             id="beauty-input"
             name="beauty-input"
             data-testid="attr2-input"
+            value={ cardAttr2 }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="daring-input">
@@ -46,6 +60,8 @@ class Form extends Component {
             id="daring-input"
             name="daring-input"
             data-testid="attr3-input"
+            value={ cardAttr3 }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="image-input">
@@ -55,6 +71,8 @@ class Form extends Component {
             id="image-input"
             name="image-input"
             data-testid="image-input"
+            value={ cardImage }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="rare-input">
@@ -63,6 +81,8 @@ class Form extends Component {
             id="rare-input"
             name="rare-input"
             data-testid="rare-input"
+            value={ cardRare }
+            onChange={ onInputChange }
           >
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
@@ -76,6 +96,8 @@ class Form extends Component {
             id="trunfo-input"
             name="trunfo-input"
             data-testid="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
           />
         </label>
         <button
@@ -83,6 +105,8 @@ class Form extends Component {
           id="save-button"
           name="save-button"
           data-testid="save-button"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
         >
           Salvar
         </button>
