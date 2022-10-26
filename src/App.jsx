@@ -6,13 +6,32 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: 0,
-    cardAttr2: 0,
-    cardAttr3: 0,
+    cardAttr1: '',
+    cardAttr2: '',
+    cardAttr3: '',
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     hasTrunfo: false,
+    isSaveButtonDisabled: true,
+  };
+
+  validateSaveButton = () => {
+    const { cardName, cardDescription, cardImage,
+      cardAttr1, cardAttr2, cardAttr3 } = this.state;
+
+    const sumMax = 210;
+    const max = 90;
+
+    if (cardName.length * cardDescription.length * cardImage.length === 0
+      || Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) > sumMax
+      || (Number(cardAttr1) > max || Number(cardAttr1) < 0)
+      || (Number(cardAttr2) > max || Number(cardAttr2) < 0)
+      || (Number(cardAttr3) > max || Number(cardAttr3) < 0)) {
+      this.setState(() => ({ isSaveButtonDisabled: true }));
+      return;
+    }
+    this.setState(() => ({ isSaveButtonDisabled: false }));
   };
 
   onInputChange = ({ target }) => {
@@ -23,7 +42,9 @@ class App extends React.Component {
       value = target.checked;
     }
 
-    this.setState(() => ({ [name]: value }));
+    this.setState(() => ({ [name]: value }), () => {
+      this.validateSaveButton();
+    });
   };
 
   render() {
