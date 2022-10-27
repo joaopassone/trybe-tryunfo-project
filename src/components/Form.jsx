@@ -2,6 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Form extends Component {
+  hasSuperTrunfo = (hasTrunfo, cardTrunfo, onInputChange) => {
+    if (hasTrunfo) {
+      return (
+        <span>Você já tem um Super Trunfo em seu baralho</span>
+      );
+    }
+    return (
+      <label htmlFor="trunfo-input">
+        Super Tryunfo
+        <input
+          type="checkbox"
+          id="trunfo-input"
+          name="cardTrunfo"
+          data-testid="trunfo-input"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+        />
+      </label>
+    );
+  };
+
   render() {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3,
@@ -90,17 +111,7 @@ class Form extends Component {
             <option value="muito raro">Muito Raro</option>
           </select>
         </label>
-        <label htmlFor="trunfo-input">
-          Super Tryunfo
-          <input
-            type="checkbox"
-            id="trunfo-input"
-            name="cardTrunfo"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        { this.hasSuperTrunfo(hasTrunfo, cardTrunfo, onInputChange) }
         <button
           type="button"
           id="save-button"

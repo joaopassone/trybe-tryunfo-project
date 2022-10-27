@@ -53,6 +53,10 @@ class App extends React.Component {
       cardAttr1, cardAttr2, cardAttr3,
       cardRare, cardTrunfo, cards } = this.state;
 
+    if (cardTrunfo) {
+      this.setState(() => ({ hasTrunfo: true }));
+    }
+
     const newCard = {
       cardName,
       cardDescription,
