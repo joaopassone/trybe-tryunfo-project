@@ -86,6 +86,7 @@ class App extends React.Component {
   };
 
   render() {
+    const { cards } = this.state;
     return (
       <>
         <header>
@@ -98,6 +99,9 @@ class App extends React.Component {
             onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card { ...this.state } />
+        </section>
+        <section>
+          { cards.map((card) => <Card { ...card } key={ card.cardName } />) }
         </section>
       </>
     );
