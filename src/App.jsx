@@ -85,6 +85,19 @@ class App extends React.Component {
     });
   };
 
+  onDeleteButtonClick = (index, { cardTrunfo }) => {
+    const { cards } = this.state;
+
+    const updatedCards = [...cards];
+    updatedCards.splice(index, 1);
+
+    this.setState(() => ({ cards: updatedCards }));
+
+    if (cardTrunfo) {
+      this.setState(() => ({ hasTrunfo: false }));
+    }
+  };
+
   render() {
     const { cards } = this.state;
     return (
@@ -101,7 +114,20 @@ class App extends React.Component {
           <Card { ...this.state } />
         </section>
         <section>
-          { cards.map((card) => <Card { ...card } key={ card.cardName } />) }
+          { cards.map((card, index) => (
+            <>
+              <Card { ...card } key={ card.cardName } />
+              <button
+                type="button"
+                id="delete-button"
+                name="delete-button"
+                data-testid="delete-button"
+                onClick={ () => this.onDeleteButtonClick(index, card) }
+              >
+                Excluir
+              </button>
+            </>
+          )) }
         </section>
       </>
     );
