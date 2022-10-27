@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import Filters from './components/Filters';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
     cards: [],
     nameFilter: '',
     rareFilter: 'todas',
+    trunfoFilter: false,
   };
 
   validateSaveButton = () => {
@@ -41,7 +43,7 @@ class App extends React.Component {
     const { name } = target;
     let { value } = target;
 
-    if (name === 'cardTrunfo') {
+    if (name === 'cardTrunfo' || name === 'trunfoFilter') {
       value = target.checked;
     }
 
@@ -100,9 +102,23 @@ class App extends React.Component {
     }
   };
 
+  filterCards = () => {
+    const { cards, nameFilter, rareFilter, trunfoFilter } = this.state;
+
+    if (trunfoFilter) {
+      return cards.filter(({ cardTrunfo }) => cardTrunfo);
+    }
+
+    return (
+      cards
+        .filter(({ cardName }) => cardName.includes(nameFilter))
+        .filter(({ cardRare }) => (rareFilter === 'todas'
+          ? true : cardRare === rareFilter))
+    );
+  };
+
   render() {
-    const { cards } = this.state;
-    const { nameFilter, rareFilter } = this.state;
+    const cards = this.filterCards();
 
     return (
       <>
@@ -117,54 +133,28 @@ class App extends React.Component {
             onSaveButtonClick={ this.onSaveButtonClick }
           />
         </section>
-        <section>
+        <aside>
           <h2>Preview</h2>
           <Card { ...this.state } />
-        </section>
+        </aside>
         <section>
           <h2>Cartas Adicionadas</h2>
-          <label htmlFor="name-filter">
-            <input
-              type="text"
-              id="name-filter"
-              name="nameFilter"
-              data-testid="name-filter"
-              onChange={ this.onInputChange }
-              placeholder="Nome da Carta"
-            />
-          </label>
-          <label htmlFor="rare-filter">
-            <select
-              id="rare-filter"
-              name="rareFilter"
-              data-testid="rare-filter"
-              onChange={ this.onInputChange }
-            >
-              <option value="todas">Todas</option>
-              <option value="normal">Normal</option>
-              <option value="raro">Raro</option>
-              <option value="muito raro">Muito Raro</option>
-            </select>
-          </label>
-          { cards
-            .filter(({ cardName }) => cardName.includes(nameFilter))
-            .filter(({ cardRare }) => (rareFilter === 'todas'
-              ?  true : cardRare === rareFilter))
-            .map((card, index) => (
-              <>
-                <Card { ...card } key={ card.cardName } />
-                <button
-                  key={ index }
-                  type="button"
-                  id="delete-button"
-                  name="deleteButton"
-                  data-testid="delete-button"
-                  onClick={ () => this.onDeleteButtonClick(index, card) }
-                >
-                  Excluir
-                </button>
-              </>
-            )) }
+          <Filters { ...this.state } onInputChange={ this.onInputChange } />
+          { cards.map((card, index) => (
+            <>
+              <Card { ...card } key={ card.cardName } />
+              <button
+                key={ index }
+                type="button"
+                id="delete-button"
+                name="deleteButton"
+                data-testid="delete-button"
+                onClick={ () => this.onDeleteButtonClick(index, card) }
+              >
+                Excluir
+              </button>
+            </>
+          )) }
         </section>
       </>
     );
