@@ -15,6 +15,7 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     cards: [],
+    nameFilter: '',
   };
 
   validateSaveButton = () => {
@@ -100,34 +101,53 @@ class App extends React.Component {
 
   render() {
     const { cards } = this.state;
+    const { nameFilter } = this.state;
+
     return (
       <>
         <header>
           <h1>Tryunfo</h1>
         </header>
         <section>
+          <h2>Adicione uma Nova Carta</h2>
           <Form
             { ...this.state }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
+        </section>
+        <section>
+          <h2>Preview</h2>
           <Card { ...this.state } />
         </section>
         <section>
-          { cards.map((card, index) => (
-            <>
-              <Card { ...card } key={ card.cardName } />
-              <button
-                type="button"
-                id="delete-button"
-                name="delete-button"
-                data-testid="delete-button"
-                onClick={ () => this.onDeleteButtonClick(index, card) }
-              >
-                Excluir
-              </button>
-            </>
-          )) }
+          <h2>Cartas Adicionadas</h2>
+          <label htmlFor="name-filter">
+            <input
+              type="text"
+              id="name-filter"
+              name="nameFilter"
+              data-testid="name-filter"
+              onChange={ this.onInputChange }
+              placeholder="Nome da Carta"
+            />
+          </label>
+          { cards
+            .filter(({ cardName }) => cardName.includes(nameFilter))
+            .map((card, index) => (
+              <>
+                <Card { ...card } key={ card.cardName } />
+                <button
+                  type="button"
+                  id="delete-button"
+                  name="deleteButton"
+                  data-testid="delete-button"
+                  onClick={ () => this.onDeleteButtonClick(index, card) }
+                >
+                  Excluir
+                </button>
+              </>
+            )) }
         </section>
       </>
     );

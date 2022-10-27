@@ -115,7 +115,7 @@ class Form extends Component {
         <button
           type="button"
           id="save-button"
-          name="save-button"
+          name="saveButton"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
