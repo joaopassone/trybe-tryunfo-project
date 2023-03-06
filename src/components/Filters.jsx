@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../Filters.css';
 
 class Filters extends Component {
   render() {
     const { onInputChange, trunfoFilter } = this.props;
 
     return (
-      <>
+      <div className="filters-div">
+        <h3>Filtros: </h3>
         <label htmlFor="name-filter">
+          Nome:
           <input
             type="text"
             id="name-filter"
@@ -19,6 +22,7 @@ class Filters extends Component {
           />
         </label>
         <label htmlFor="rare-filter">
+          Raridade:
           <select
             id="rare-filter"
             name="rareFilter"
@@ -33,7 +37,6 @@ class Filters extends Component {
           </select>
         </label>
         <label htmlFor="trunfo-filter">
-          Super Tryunfo
           <input
             type="checkbox"
             id="trunfo-filter"
@@ -41,8 +44,9 @@ class Filters extends Component {
             data-testid="trunfo-filter"
             onChange={ onInputChange }
           />
+          {' Super Tryunfo'}
         </label>
-      </>
+      </div>
     );
   }
 }

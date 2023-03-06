@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../Form.css';
 
 class Form extends Component {
   hasSuperTrunfo = (hasTrunfo, cardTrunfo, onInputChange) => {
     if (hasTrunfo) {
       return (
-        <span>Você já tem um Super Trunfo em seu baralho</span>
+        <span className="hasTrunfo">Você já tem um Super Trunfo em seu baralho</span>
       );
     }
     return (
       <label htmlFor="trunfo-input">
-        Super Tryunfo
         <input
           type="checkbox"
           id="trunfo-input"
@@ -19,6 +19,7 @@ class Form extends Component {
           checked={ cardTrunfo }
           onChange={ onInputChange }
         />
+        { ' Super Tryunfo' }
       </label>
     );
   };
@@ -29,14 +30,17 @@ class Form extends Component {
       cardImage, cardRare, cardTrunfo,
       hasTrunfo, isSaveButtonDisabled,
       onInputChange, onSaveButtonClick } = this.props;
+    const maxPoints = 210;
 
     return (
       <form>
         <label htmlFor="name-input">
           Nome
+          <br />
           <input
             type="text"
             id="name-input"
+            className="name-input"
             name="cardName"
             data-testid="name-input"
             value={ cardName }
@@ -45,8 +49,10 @@ class Form extends Component {
         </label>
         <label htmlFor="description-input">
           Descrição
+          <br />
           <textarea
             id="description-input"
+            className="description-input"
             name="cardDescription"
             data-testid="description-input"
             value={ cardDescription }
@@ -58,10 +64,13 @@ class Form extends Component {
           <input
             type="number"
             id="style-input"
+            className="number-input"
             name="cardAttr1"
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            min="0"
+            max="90"
           />
         </label>
         <label htmlFor="beauty-input">
@@ -69,10 +78,13 @@ class Form extends Component {
           <input
             type="number"
             id="beauty-input"
+            className="number-input"
             name="cardAttr2"
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            min="0"
+            max="90"
           />
         </label>
         <label htmlFor="daring-input">
@@ -80,21 +92,29 @@ class Form extends Component {
           <input
             type="number"
             id="daring-input"
+            className="number-input"
             name="cardAttr3"
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            min="0"
+            max="90"
           />
         </label>
+        <p className="points-left">
+          { `Pontos Restantes: ${maxPoints - cardAttr1 - cardAttr2 - cardAttr3}` }
+        </p>
         <label htmlFor="image-input">
           Imagem
           <input
             type="text"
             id="image-input"
+            className="image-input"
             name="cardImage"
             data-testid="image-input"
             value={ cardImage }
             onChange={ onInputChange }
+            placeholder="Link da Imagem"
           />
         </label>
         <label htmlFor="rare-input">

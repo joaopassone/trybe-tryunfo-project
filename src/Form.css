@@ -1,0 +1,86 @@
+form {
+  color: darkgreen;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 600;
+  gap: 20px;
+  margin: 50px 100px;
+}
+
+input, textarea {
+  border: none;
+  color: green;
+  font-size: 18px;
+  margin-top: 10px;
+  outline: none;
+}
+
+.name-input, .description-input {
+  border-bottom: 2px darkgreen solid;
+  width: 100%;
+}
+
+.description-input {
+  height: 22px;
+  margin-bottom: 20px;
+  resize: none;
+}
+
+.number-input {
+  margin: 0;
+  text-align: end;
+  width: 100px;
+}
+
+label:has( > select ) {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+
+label:has( > .number-input ) {
+  border-bottom: 2px dotted darkgreen;
+  align-items: center;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+label:has( > .image-input ) {
+  margin-top: 20px;
+}
+
+.points-left {
+  align-self: center;
+}
+
+.image-input {
+  border: 2px solid darkgreen;
+  border-radius: 5px;
+  width: 100%;
+}
+
+select {
+  background-color: white;
+  border: 2px solid darkgreen;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  align-self: center;
+  background-color: lightgreen;
+  font-size: 18px;
+  font-weight: 600;
+  height: 50px;
+  width: 200px;
+}
+
+.hasTrunfo {
+  align-self: center;
+}

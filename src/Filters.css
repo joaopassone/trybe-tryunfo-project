@@ -1,0 +1,17 @@
+.filters-div {
+  background-color: lightgreen;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 200px;
+}
+
+#name-filter {
+  color: black;
+  font-size: 16px;
+  width: 250px;
+  border: 1px darkgreen solid;
+  margin: 0;
+  margin-left: 10px;
+  padding: 5px;
+}

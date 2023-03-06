@@ -1,7 +1,9 @@
 import React from 'react';
 import Card from './components/Card';
+import DeleteButton from './components/DeleteButton';
 import Filters from './components/Filters';
 import Form from './components/Form';
+import './App.css';
 
 class App extends React.Component {
   state = {
@@ -123,38 +125,37 @@ class App extends React.Component {
     return (
       <>
         <header>
-          <h1>Tryunfo</h1>
+          <h1>Super Tryunfo</h1>
         </header>
-        <section>
-          <h2>Adicione uma Nova Carta</h2>
-          <Form
-            { ...this.state }
-            onInputChange={ this.onInputChange }
-            onSaveButtonClick={ this.onSaveButtonClick }
-          />
-        </section>
-        <aside>
-          <h2>Preview</h2>
-          <Card { ...this.state } />
-        </aside>
+        <main>
+          <section>
+            <h2>Adicione uma Nova Carta</h2>
+            <Form
+              { ...this.state }
+              onInputChange={ this.onInputChange }
+              onSaveButtonClick={ this.onSaveButtonClick }
+            />
+          </section>
+          <aside>
+            <h2>Preview</h2>
+            <Card { ...this.state } />
+          </aside>
+        </main>
         <section>
           <h2>Cartas Adicionadas</h2>
           <Filters { ...this.state } onInputChange={ this.onInputChange } />
-          { cards.map((card, index) => (
-            <>
-              <Card { ...card } key={ card.cardName } />
-              <button
-                key={ index }
-                type="button"
-                id="delete-button"
-                name="deleteButton"
-                data-testid="delete-button"
-                onClick={ () => this.onDeleteButtonClick(index, card) }
-              >
-                Excluir
-              </button>
-            </>
-          )) }
+          <div className="addCards-div">
+            { cards.map((card, index) => (
+              <div className="addCard-div" key={ card.cardName }>
+                <Card { ...card } />
+                <DeleteButton
+                  onDeleteButtonClick={ this.onDeleteButtonClick }
+                  index={ index }
+                  card={ card }
+                />
+              </div>
+            )) }
+          </div>
         </section>
       </>
     );

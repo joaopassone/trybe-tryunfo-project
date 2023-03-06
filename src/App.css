@@ -1,0 +1,61 @@
+header {
+  align-items: center;
+  background-color: darkgreen;
+  display: flex;
+  height: 100px;
+  margin-bottom: 50px;
+}
+
+h1 {
+  color: lightgreen;
+  font-size: 40px;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+}
+
+h2 {
+  color: darkgreen;
+  font-size: 26px;
+  font-style: italic;
+  text-align: center;
+}
+
+h3 {
+  color: darkgreen;
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+main {
+  display: flex;
+}
+
+main section {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+}
+
+aside {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addCard-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addCards-div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}

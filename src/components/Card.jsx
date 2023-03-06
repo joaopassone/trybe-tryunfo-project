@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../Card.css';
+import trunfoLogo from '../imgs/trunfo.png';
 
 class Card extends Component {
   isTrunfo = (cardTrunfo) => {
     if (cardTrunfo) {
       return (
-        <span data-testid="trunfo-card">Super Trunfo</span>
+        <div className="trunfo-div">
+          <img src={ trunfoLogo } alt="trunfo" className="trunfo" />
+        </div>
       );
     }
   };
@@ -15,14 +19,28 @@ class Card extends Component {
       cardAttr1, cardAttr2, cardAttr3, cardRare, cardTrunfo } = this.props;
 
     return (
-      <div>
-        <p data-testid="name-card">{ cardName }</p>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <p data-testid="description-card">{ cardDescription }</p>
-        <p data-testid="attr1-card">{ cardAttr1 }</p>
-        <p data-testid="attr2-card">{ cardAttr2 }</p>
-        <p data-testid="attr3-card">{ cardAttr3 }</p>
-        <p data-testid="rare-card">{ cardRare }</p>
+      <div className="card-div">
+        <p className="name" data-testid="name-card">{ cardName.toUpperCase() }</p>
+        <img className="card-image" src={ cardImage } alt={ cardName } data-testid="image-card" />
+        <div className="description-div">
+          <p className="description" data-testid="description-card">{ cardDescription }</p>
+        </div>
+        <div className="att-div">
+          <span>Estilo:</span>
+          <p data-testid="attr1-card">{ cardAttr1 }</p>
+        </div>
+        <div className="att-div">
+          <span>Beleza:</span>
+          <p data-testid="attr2-card">{ cardAttr2 }</p>
+        </div>
+        <div className="att-div">
+          <span>Ousadia:</span>
+          <p data-testid="attr3-card">{ cardAttr3 }</p>
+        </div>
+        <div className="att-div">
+          <span>Raridade:</span>
+          <p data-testid="rare-card">{ cardRare[0].toUpperCase() + cardRare.slice(1) }</p>
+        </div>
         { this.isTrunfo(cardTrunfo) }
       </div>
     );
