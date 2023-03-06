@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import '../Card.css';
+
 import trunfoLogo from '../imgs/trunfo.png';
+import noImage from '../imgs/no-image.png';
 
 class Card extends Component {
   isTrunfo = (cardTrunfo) => {
@@ -21,9 +24,16 @@ class Card extends Component {
     return (
       <div className="card-div">
         <p className="name" data-testid="name-card">{ cardName.toUpperCase() }</p>
-        <img className="card-image" src={ cardImage } alt={ cardName } data-testid="image-card" />
+        <img
+          className="card-image"
+          src={ cardImage || noImage }
+          alt={ cardName || 'Imagem inválida' }
+          data-testid="image-card"
+        />
         <div className="description-div">
-          <p className="description" data-testid="description-card">{ cardDescription }</p>
+          <p className="description" data-testid="description-card">
+            { cardDescription }
+          </p>
         </div>
         <div className="att-div">
           <span>Estilo:</span>
