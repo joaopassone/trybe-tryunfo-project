@@ -17,7 +17,7 @@ Demonstração de cartas feitas pela aplicação:
 
 ## Como utilizar?
 
-Após clonar o repositório, instale as dependências do projeto com 'npm install' e rode com 'npm start'.
+[Clique aqui para acessar a página do Tryunfo](https://joaopassone.github.io/projetos/tryunfo/index.html)
 
 
 ## Sobre o Super Trunfo
